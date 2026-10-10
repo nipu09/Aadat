@@ -24,6 +24,9 @@ const schema = z
     OTP_MAX_ATTEMPTS: z.coerce.number().int().positive().default(5),
     OTP_RESEND_COOLDOWN_SECONDS: z.coerce.number().int().nonnegative().default(60),
 
+    // Preferred in production on Render free (SMTP ports are blocked there): Brevo HTTPS API key
+    BREVO_API_KEY: z.string().optional(),
+
     SMTP_HOST: z.string().optional(),
     SMTP_PORT: z.coerce.number().int().positive().default(587),
     SMTP_USER: z.string().optional(),
@@ -32,9 +35,19 @@ const schema = z
   })
   .superRefine((v, ctx) => {
     if (v.NODE_ENV !== "production") return;
-    for (const key of ["SMTP_HOST", "SMTP_USER", "SMTP_PASS", "EMAIL_FROM"]) {
-      if (!v[key]) {
-        ctx.addIssue({ code: "custom", path: [key], message: `${key} is required in production` });
+    if (!v.EMAIL_FROM) {
+      ctx.addIssue({ code: "custom", path: ["EMAIL_FROM"], message: "EMAIL_FROM is required in production" });
+    }
+    // Either the Brevo HTTPS API key, or a full SMTP config
+    if (!v.BREVO_API_KEY) {
+      for (const key of ["SMTP_HOST", "SMTP_USER", "SMTP_PASS"]) {
+        if (!v[key]) {
+          ctx.addIssue({
+            code: "custom",
+            path: [key],
+            message: `${key} is required in production (or set BREVO_API_KEY instead)`,
+          });
+        }
       }
     }
   });
@@ -65,6 +78,7 @@ module.exports = Object.freeze({
     maxAttempts: e.OTP_MAX_ATTEMPTS,
     resendCooldownSeconds: e.OTP_RESEND_COOLDOWN_SECONDS,
   },
+  brevoApiKey: e.BREVO_API_KEY,
   smtp: {
     host: e.SMTP_HOST,
     port: e.SMTP_PORT,
