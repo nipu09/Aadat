@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Space Mono", ui-monospace, monospace;
+  --font-display: "Shrikhand", serif;
+  --color-paper: #f6e7c1;
+  --color-paper2: #efd9a4;
+  --color-tan: #ead3a0;
+  --color-card: #fbf0d3;
+  --color-cream: #fff6dc;
+  --color-ink: #3a2230;
+  --color-rust: #c4452b;
+  --color-mustard: #eaa93a;
+  --color-olive: #7a7a2e;
+  --color-clay: #96623e;
+  --shadow-hard: 4px 4px 0 var(--color-ink);
+  --shadow-hard-sm: 2px 2px 0 var(--color-ink);
+  --shadow-hard-lg: 8px 8px 0 var(--color-ink);
+  --animate-cross: cross 7s linear forwards;
+  @keyframes cross {
+    from { transform: translateX(-280px); }
+    to { transform: translateX(100vw); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans;
+    background-image: radial-gradient(rgba(58, 34, 48, 0.09) 1px, transparent 1.4px);
+    background-size: 14px 14px;
+  }
+  button, input { font: inherit; }
+  :focus-visible { outline: 3px solid var(--color-rust); outline-offset: 2px; }
+}
+
+@utility stage-bg {
+  background:
+    linear-gradient(var(--color-rust) 0 5px, var(--color-mustard) 5px 10px, var(--color-olive) 10px 15px, transparent 15px),
+    repeating-linear-gradient(90deg, rgba(58, 34, 48, 0.07) 0 40px, transparent 40px 80px),
+    var(--color-paper2);
+}
+@utility floor-bg {
+  background: repeating-linear-gradient(90deg, rgba(58, 34, 48, 0.18) 0 3px, transparent 3px 36px), var(--color-clay);
+}
