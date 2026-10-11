@@ -96,6 +96,14 @@ export default function Login() {
           {signup ? "Already have an account? Sign in" : "New here? Create an account"}
         </button>
       </form>
+      
+<button
+  type="button"
+  onClick={() => window.open("https://aadat-api-0u8l.onrender.com", "_blank")}
+  className="cursor-pointer p-0.5 text-left underline"
+>
+  Click to start the server
+</button>
     </AuthLayout>
   );
 }
