@@ -4,7 +4,7 @@
 
 AAdat is a minimal habit tracker with a retro pixel-art look. Create the habits you care about, mark each day as done, half done, or not done, and watch your year fill up as a colorful heatmap.
 
- [**Live demo**](aadat-delta.vercel.app/)
+ [**Live demo**](https://vercel.app)
 
 <!-- Add a screenshot or GIF here once you have one:
 ![AAdat screenshot](docs/screenshot.png)
