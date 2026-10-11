@@ -62,9 +62,9 @@ AAdat is a minimal habit tracker with a retro pixel-art look. Create the habits 
 ## Project status
 
 - [x] Front end (login, tracker, heatmap, stats, animations)
-- [ ] Back end API (habits, entries, auth)
-- [ ] Connect front end to the API
-- [ ] Deploy
+- [x] Back end API (habits, entries, auth)
+- [x] Connect front end to the API
+- [x] Deploy
 
 Right now the front end runs on a `localStorage` stub, so the app works in your browser without a server. The login accepts any email and password until the real backend is connected.
 
