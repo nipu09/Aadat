@@ -48,24 +48,6 @@ export default function Login() {
         <h1 className="font-display text-[56px] leading-none text-rust [text-shadow:3px_3px_0_var(--color-ink)]">
           AAdat
         </h1>
-        
-<button
-  type="button"
-  onClick={async () => {
-    try {
-      await fetch("https://aadat-api-0u8l.onrender.com", {
-        method: "GET",
-        mode: "no-cors",
-      });
-      alert("Server wake-up request sent!");
-    } catch (error) {
-      alert("Unable to reach the server. Please try again.");
-    }
-  }}
-  className="cursor-pointer p-0.5 text-left underline"
->
-  Click to start the server
-</button>
 
         <h2 className="mb-1 font-display text-[22px] font-normal">
           {signup ? "Start your streak" : "Welcome back"}
